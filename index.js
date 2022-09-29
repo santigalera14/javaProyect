@@ -121,3 +121,26 @@ function comprar() {
 mostrarProductos();
 comprar();
 mostrarCarrito();
+
+function agregarAlCarrito (){
+  alert("agregado al carrito");
+} 
+
+
+
+let boton = document.getElementById("agregar al carrito")
+boton.addEventListener ("mousedown", () => console.log("mousedown"));
+boton.addEventListener ("click", agregarAlCarrito)
+boton.addEventListener ("mouseup", () => console.log("mouseup"))  
+
+let saludo = document.getElementById("saludo")
+let input = document.getElementById("mail")
+input.addEventListener ("input", () => {
+  if(!input.value.includes("@")){
+    saludo.innerHTML = "correo incorrecto"
+    saludo.className = "rojo"
+  }else{
+    saludo.innerHTML = "correo correcto"
+    saludo.className = "verde"
+  }
+})
