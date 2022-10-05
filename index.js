@@ -1,3 +1,29 @@
+const carritoBtn = document.getElementById("carrito");
+const modal = document.getElementById("modal_overlay");
+const cerrarModal = document.querySelector(".modal_close");
+const vaciarCarrito = document.getElementById("vaciar_carrito");
+const modalContainer = document.querySelector(".modal_container");
+const span = document.querySelector(".contador");
+const cards = document.querySelector(".cards");
+const carritoCards = document.getElementById("cards_carrito");
+const precioFinal = document.querySelector(".total");
+
+vaciarCarrito.addEventListener("click", () => {
+  carrito.length = 0;
+  actualizarCarrito();
+  localStorage.removeItem("carrito");
+});
+
+carritoBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.classList.add("modal_show");
+});
+cerrarModal.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.classList.remove("modal_show");
+});
+
+
 const carrito = [];
 const productos = [];
 
@@ -7,6 +33,7 @@ class producto {
     this.nombre = nombre;
     this.precio = precio;
     this.stock = stock;
+    this.img = img
   }
   sumarIva() {
     return (this.precio = this.precio * 1), 21;
@@ -29,118 +56,73 @@ productos.push(producto5);
 const producto6 = new producto(6, "Riñonera", 3000, 5);
 productos.push(producto6);
 
-function mostrarProductos() {
-  alert(
-    "Bienvenido a StreetWear, nuestros productos se presentan de la siguiente forma",
-  );
-  productos.forEach((producto) => {
-    alert(`
-            ${producto.nombre}
-            $${producto.precio}
-        `);
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("carrito")) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+    actualizarCarrito();
+  }
+});
+
+function agregarAlCarrito(producto) {
+  let buscarProducto = carrito.find((item) => item.id === producto.id);
+  if (buscarProducto !== undefined) {
+    buscarProducto.precio = buscarProducto.precio + producto.precio;
+    buscarProducto.cantidad = buscarProducto.cantidad + 1;
+  } else {
+    carrito.push({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      img: producto.img,
+      cantidad: 1,
+    });
+  }
+  actualizarCarrito();
 }
 
-function mostrarCarrito() {
-  alert("Usted tiene los siguientes productos en su carrito:");
+function actualizarCarrito() {
+  carritoCards.innerHTML = "";
   carrito.forEach((producto) => {
-    alert(`
-            ${producto.nombre}
-            $${producto.precio}
-        `);
+    let div = document.createElement("div");
+    div.innerHTML = `
+      <img src="${producto.img}">
+      <h3>${producto.nombre}</h3>
+      <p>Cantidad:${producto.cantidad}</p>
+      <p>$${producto.precio}</p>
+      <button id="eliminar${producto.id}" class="btn eliminar">Eliminar</button>
+      `;
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    carritoCards.append(div);
+    div.className = "card";
+
+    const btnEliminar = document.getElementById(`eliminar${producto.id}`);
+    btnEliminar.addEventListener("click", (e) => eliminarDelCarrito(producto));
   });
-
-  let continuar = Number(
-    prompt("Que quiere hacer: 1-confirmar compra, 2-vaciar carrito"),
-  );
-  switch (continuar) {
-    case 1:
-      let total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
-      let iva = total * 1.21;
-      alert(`El total de su compra es de $${iva}`);
-      break;
-    case 2:
-      carrito.splice(0, carrito.length);
-      alert("Su carrito se vacio con exito!");
-      console.log(carrito);
-      break;
-  }
+  span.innerHTML = carrito.length;
+  precioFinal.innerHTML = carrito.reduce((acc, prod) => acc + prod.precio, 0);
 }
 
-function comprar() {
-  let compra = Number(
-    prompt(
-      "Elija el producto que quiera: 1-buzo gvng, 2-jogger, 3-chomba dc, 4-campera kotk, 5-gorro, 6-riñonera o 0-salir",
-    ),
-  );
-
-  while (compra !== 0) {
-    let resultado;
-    switch (compra) {
-      case 1:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      case 2:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      case 3:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      case 4:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      case 5:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      case 6:
-        resultado = productos.find((producto) => producto.id === compra);
-        carrito.push(resultado);
-
-        break;
-      default:
-        alert("Ingrese un producto de la lista por favor");
-    }
-    compra = Number(
-      prompt(
-        "Elija el producto que quiera: 1-buzo gvng, 2-jogger, 3-chomba dc, 4-campera kotk, 5-gorro, 6-riñonera o 0-salir",
-      ),
-    );
-  }
+function eliminarDelCarrito(producto) {
+  let buscado = carrito.find((prod) => prod.id === producto.id);
+  let indice = carrito.indexOf(buscado);
+  carrito.splice(indice, 1);
+  actualizarCarrito();
 }
 
-mostrarProductos();
-comprar();
-mostrarCarrito();
+productos.forEach((producto) => {
+  let div = document.createElement("div");
 
-function agregarAlCarrito (){
-  alert("agregado al carrito");
-} 
+  div.innerHTML = `
+  <img src="${producto.img}">
+  <h3>${producto.nombre}</h3>
+  <p>$${producto.precio}</p>
+  <button id=${producto.id} class="btn">Agregar al Carrito</button>
+  `;
+  div.className = "card";
+  cards.append(div);
 
-
-
-let boton = document.getElementById("agregar al carrito")
-boton.addEventListener ("mousedown", () => console.log("mousedown"));
-boton.addEventListener ("click", agregarAlCarrito)
-boton.addEventListener ("mouseup", () => console.log("mouseup"))  
-
-let saludo = document.getElementById("saludo")
-let input = document.getElementById("mail")
-input.addEventListener ("input", () => {
-  if(!input.value.includes("@")){
-    saludo.innerHTML = "correo incorrecto"
-    saludo.className = "rojo"
-  }else{
-    saludo.innerHTML = "correo correcto"
-    saludo.className = "verde"
-  }
-})
+  const boton = document.getElementById(producto.id);
+  boton.addEventListener("click", (e) => {
+    agregarAlCarrito(producto);
+  });
+});
