@@ -1,66 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>streetwear</title>
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://github.com/santigalera14/javaProyect.git">
-    <title>Document</title>
+    <title>Proyecto Final</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
+
 <body>
     <header>
         <div class="container nav">
-            <h1>StreetWear</h1>
+            <a href="index.html"></a>
+            <h1>Street Wear</h1>
+            <div class="carritoLogo">
+                <svg xmlns="http://www.w3.org/2000/svg" id="carrito" class="icon icon-tabler icon-tabler-shopping-cart"
+                    width="64" height="64" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="6" cy="19" r="2" />
+                    <circle cx="17" cy="19" r="2" />
+                    <path d="M17 17h-11v-14h-2" />
+                    <path d="M6 5l14 1l-1 7h-13" />
+                </svg><span class="contador">0</span>
+            </div>
+
         </div>
     </header>
 
     <main>
         <section class="container">
+            <input type="text" class="search" placeholder="search"/>
             <h2>Productos</h2>
+             <input id="buscador_productos" class="buscador" type="text" placeholder="Buscar Producto">
             <div class="cards">
+                < <div class="card">
+                    <img src="img/dc.jpg" alt="">
+                    <h3>Chomba</h3>
+                    <p>$15000</p>
+                    <button class="btn">Agregar al Carrito</button>
+                </div>
                 <div class="card">
                     <img src="img/gvng.jpg" alt="">
-                    <h3>Buzo Gvng</h3>
-                    <p>$12599</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
-                </div>
-                <div class="card">
-                    <img src="img/pantalon.jpeg" alt="">
-                    <h3>Jogger</h3>
-                    <p>$7000</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
-                </div>
-                <div class="card">
-                    <img src="img/dc.jpg" alt="">
-                    <h3>Chomba Dc</h3>
-                    <p>$5790</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
+                    <h3>Buzo</h3>
+                    <p>$15000</p>
+                    <button class="btn">Agregar al Carrito</button>
                 </div>
                 <div class="card">
                     <img src="img/kotk.jpg" alt="">
-                    <h3>Campera KOTK<z/h3>
-                    <p>$13599</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
+                    <h3>Conjunto kotk</h3>
+                    <p>$9000</p>
+                    <button class="btn">Agregar al Carrito</button>
+                </div>
+                <div class="card">
+                    <img src="img/pantalon.jpeg" alt="">
+                    <h3>pantalon</h3>
+                    <p>$9000</p>
+                    <button class="btn">Agregar al Carrito</button>
+                </div>
+                <div class="card">
+                    <img src="img/rinonera.jpg" alt="">
+                    <h3>riñonera</h3>
+                    <p>$15000</p>
+                    <button class="btn">Agregar al Carrito</button>
                 </div>
                 <div class="card">
                     <img src="img/gorroGvng.webp" alt="">
                     <h3>Gorro</h3>
-                    <p>$4000</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
-                </div>
-                <div class="card">
-                    <img src="img/rinonera.jpg" alt="">
-                    <h3>Riñonera</h3>
                     <p>$3000</p>
-                    <button id="boton" class="btn">Agregar al Carrito</button>
-                </div>
+                    <button class="btn">Agregar al Carrito</button>
+                </div> -->
             </div>
         </section>
+
         <section id="modal_overlay" class="modal">
             <div class="modal_container">
-                <div id="cards_carrito" class="cards"></div>
+                <div id="cards_carrito" class="cards_carrito"></div>
                 <p class="contenedor_total">Precio Total: <span class="total">0<span></p>
                 <div class="botones">
                     <button class="finalizar_compra btn">Comprar</button>
@@ -69,11 +90,11 @@
                 </div>
             </div>
         </section>
-        <div id="saludo">Hola, ingrese su mail</div>
-        <input type="text" id="mail">
     </main>
 
-    
-    <link rel="stylesheet" href="./index.js">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>
