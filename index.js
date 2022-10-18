@@ -61,49 +61,34 @@ class producto {
 
 const producto1 = new producto(
   1,
-  "camiseta titular",
+  "Chomba",
   15000,
   3,
-  "img/camiseta titular.webp",
+  "img/dc.jpg",
 );
 const producto2 = new producto(
   2,
-  "camiseta suplente",
+  "Buzo",
   15000,
   4,
-  "img/camiseta suplente.webp",
+  "img/gvng.jpg",
 );
-const producto3 = new producto(3, "short titular", 9000, 6, "img/short.webp");
+const producto3 = new producto(3, "Conjunto kotk", 9000, 6, "img/kotk.jpg");
 const producto4 = new producto(
   4,
-  "short suplente",
+  "riñonera",
   9000,
   2,
-  "img/short suplente.webp",
+  "img/rinonera.jpg",
 );
 const producto5 = new producto(
   5,
-  "camiseta de arquero",
+  "Gorro",
   15000,
   2,
-  "img/camiseta arquero.webp",
+  "img/gorroGvng.webp",
 );
-const producto6 = new producto(6, "gorra", 3000, 3, "img/gorra.webp");
-const producto7 = new producto(7, "medias titular", 3500, 4, "img/medias.webp");
-const producto8 = new producto(
-  8,
-  "medias suplente",
-  3500,
-  2,
-  "img/medias sup.webp",
-);
-const producto9 = new producto(
-  9,
-  "short arquero",
-  9500,
-  5,
-  "img/short arquero.webp",
-);
+
 productos.push(
   producto1,
   producto2,
