@@ -187,3 +187,20 @@ function renderCards(productos) {
 }
 
 renderCards(productos); //* LLamo en el inicio con los productos
+
+// Search
+const buscador = async () => {
+  try {
+    let response = await fetch("json/productos.json");
+    let data = await response.json();
+    seachBar.addEventListener("keyup", (e) => {
+      let filteredProductos = data.filter((product) => {
+        return product.nombre.match(e.target.value); //* busca en cada producto, esta searchbar en KEY SENSITIVE
+      });
+      cards.innerHTML = null; //* Borra todas las cartas
+      renderCards(filteredProductos); //* Llama a la funcion render con los productos filtrados
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

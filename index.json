@@ -1,0 +1,32 @@
+[
+    {
+        "id":1,
+        "nombre":"Chomba",
+        "precio":15000,
+        "img": "img/dc.jpg"
+    },
+    {
+        "id":2,
+        "nombre":"Buzo",
+        "precio":15000,
+        "img":"img/gvng.jpg"
+    },
+    {
+        "id":3,
+        "nombre":"Conjunto kotk",
+        "precio":9000,
+        "img":"img/kotk.jpg"
+    },
+    {
+        "id":4,
+        "nombre":"riñonera",
+        "precio":9000,
+        "img":"img/rinonera.jpg"
+    },
+    {
+        "id":5,
+        "nombre":"gorro",
+        "precio":15000,
+        "img":"img/gorroGvng.webp"
+    }
+]
